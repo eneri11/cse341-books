@@ -15,7 +15,7 @@ const connectToDb = async () => {
     await client.connect();
 
     database = client.db(
-        process.env.MONGODB_DB_NAME || 'practice'
+        process.env.MONGODB_DB_NAME || 'cse341-books-db'
     );
 
     console.log('Connected to MongoDB Atlas.');
