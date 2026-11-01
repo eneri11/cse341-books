@@ -22,7 +22,7 @@ app.get('/books', async (req, res) => {
         console.error('Error retrieving books:', error.message);
 
         return res.status(500).json({
-            message: 'An error occurred while retrieving books.'
+            message: 'Internal server error'
         });
     }
 });
@@ -46,7 +46,7 @@ app.get('/books/:id', async (req, res) => {
         console.error('Error retrieving book:', error.message);
 
         return res.status(500).json({
-            message: 'An error occurred while retrieving the book.'
+            message: 'Internal server error'
         });
     }
 });
