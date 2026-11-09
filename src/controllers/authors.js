@@ -136,16 +136,33 @@ const updateAuthorHandler = (getDatabase) => {
                 });
             }
 
-            await updateAuthor(
+            const result = await updateAuthor(
                 req.params.id,
                 { name: name.trim(), birthYear },
                 getDatabase
             );
 
+            if (result.matchedCount === 0) {
+                return res.status(404).json({
+                    message: 'Author not found'
+                });
+            }
+
+            const db = getDatabase();
+            const savedAuthor = await db.collection('authors').findOne({
+                id: req.params.id
+            });
+
+            if (!savedAuthor) {
+                return res.status(404).json({
+                    message: 'Author not found'
+                });
+            }
+
             return res.status(200).json({
-                id: req.params.id,
-                name: name.trim(),
-                birthYear
+                id: savedAuthor.id,
+                name: savedAuthor.name,
+                birthYear: savedAuthor.birthYear
             });
         } catch (error) {
             console.error('PUT /authors/:id failed:', error.message);

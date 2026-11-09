@@ -234,7 +234,8 @@ test('POST /authors rejects a duplicate ID with status 400', async () => {
 
 
 test('PUT /authors/:id updates an author with status 200', async () => {
-    const app = createApp(() => { return createFakeDatabase() });
+    const database = createFakeDatabase();
+    const app = createApp(() => { return database });
 
     await withServer(app, async (baseUrl) => {
         const response = await fetch(`${baseUrl}/authors/a1`, {
