@@ -19,14 +19,27 @@ const getAllBooks = async (getDatabase = getDb) => {
 };
 
 // Get one book by custom ID
+
 const getBookById = async (bookId, getDatabase = getDb) => {
     const db = getDatabase();
     const book = await db.collection('books').findOne({
         id: bookId
     });
 
-    return book;
+    if (!book) {
+        return null;
+    }
+
+    const { id, authorId, title, publicationDate } = book;
+
+    return {
+        id,
+        authorId,
+        title,
+        publicationDate
+    };
 };
+
 
 // Create a book
 const createBook = async (book, getDatabase = getDb) => {
