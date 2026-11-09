@@ -2,11 +2,20 @@
 import { getDb } from '../db/connect.js';
 
 // Get all books
+
+
 const getAllBooks = async (getDatabase = getDb) => {
     const db = getDatabase();
     const books = await db.collection('books').find({}).toArray();
 
-    return books;
+    return books.map(({ id, authorId, title, publicationDate }) => {
+        return {
+            id,
+            authorId,
+            title,
+            publicationDate
+        };
+    });
 };
 
 // Get one book by custom ID
