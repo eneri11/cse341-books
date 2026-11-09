@@ -9,12 +9,12 @@ const swaggerSpec = {
     },
     servers: [
         {
-            url: 'http://localhost:3000',
-            description: 'Local development server'
+            url: 'https://cse341-books-ks1x.onrender.com',
+            description: 'Live Render server'
         },
         {
-            url: 'https://cse341-books-ks1x.onrender.com',
-            description: 'Deployed Render server'
+            url: 'http://localhost:3000',
+            description: 'Local development server'
         }
     ],
     tags: [
